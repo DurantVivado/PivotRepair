@@ -1,0 +1,12 @@
+/home/grasure/go/src/github.com/YuchongHu/PivotRepair/config/addresses.txt
+/home/grasure/go/src/github.com/YuchongHu/PivotRepair/config/bandwidth.txt
+/home/grasure/go/src/github.com/YuchongHu/PivotRepair/config/test_task.txt
+/home/grasure/go/src/github.com/YuchongHu/PivotRepair/files/results.txt
+localhost 10086
+5 3 3
+10 67108864
+/home/grasure/go/src/github.com/YuchongHu/PivotRepair/files/read_file
+/home/grasure/go/src/github.com/YuchongHu/PivotRepair/files/write_file
+.txt
+2 0
+6710886410

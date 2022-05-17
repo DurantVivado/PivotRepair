@@ -1,0 +1,12 @@
+config/addresses.txt
+config/bandwidth.txt
+config/test_task.txt
+files/results.txt
+localhost 10086
+5 3 3
+10 67108864
+files/read_file
+files/write_file
+.txt
+2 0
+6710886410
