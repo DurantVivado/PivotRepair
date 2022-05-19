@@ -3,7 +3,7 @@ INC_DIR := include
 OBJ_DIR := build/obj
 BIN_DIR := build/bin
 
-CXX := g++ -std=c++11
+CXX := g++ -g -std=c++11
 INCFLAGS := -I$(INC_DIR)
 CXXFLAGS := -pthread -lsockpp -lisal
 
@@ -34,7 +34,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CXX) $(INCFLAGS) -c $< -o $@ -O3
 
 $(BIN_DIR)/%_main : $(OBJ_DIR)/%_main.o $(ALLFILES)
-	$(CXX) $^ -o $@ $(CXXFLAGS) -O3
+	$(CXX)  $^ -o $@ $(CXXFLAGS) -O3
 
 .PHONY: clean
 clean:

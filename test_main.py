@@ -9,8 +9,8 @@ each_times = 5
 algs = ['f'] #r:RP,f:PivotRepair,p:PPT
 nks = [(4, 2)]
 
-size = 2 ** 26 #32MiB
-psize = 32768
+size = 1024 #32MiB
+psize = 1024 #32KiB
 
 def main():
     t = tester.Tester(nodes_num)

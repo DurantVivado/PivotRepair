@@ -2,6 +2,8 @@
 
 #include <utility>
 
+//din_num  prc_num  out_num: the number of download threads, the number of data processing threads and 
+// the number of transfer threads respectively;
 NodeRepairer::NodeRepairer(uint16_t _din_num, uint16_t _prc_num, uint16_t _out_num,
                            uint16_t _id,
                            uint16_t k, uint16_t m, std::unique_ptr<node_address[]> node_addresses,
@@ -58,12 +60,12 @@ void NodeRepairer::get_data()
     std::unique_lock<std::mutex> ilck(im_mtx);
     while (true)
     {
-	if (input_remains[task.sid] == 0) {
-    //std::cout << "getted from " << task.sid << std::endl;
-		ilck.unlock();
-		break;
-	}
-	ilck.unlock();
+      if (input_remains[task.sid] == 0) {
+        //std::cout << "getted from " << task.sid << std::endl;
+        ilck.unlock();
+        break;
+      }
+      ilck.unlock();
 
       data_piece dp = pnc->read(task.sid, task.index);
       if (task.sid == id) {

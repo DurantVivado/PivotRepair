@@ -5,7 +5,6 @@
 ConnectionSolver::ConnectionSolver(const std::string &host, int16_t port)
 {
   //connect to the server
-  std::cout<<host<<","<<port<<std::endl;
   while (!conn.connect(sockpp::inet_address(host, port)))
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(1));

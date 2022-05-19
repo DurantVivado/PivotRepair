@@ -1,8 +1,9 @@
 import csv
 import random
+import os
 
-lfile_name = '/Users/pitwinner/Desktop/ftp_repair/source/3traces_{}_{}.csv'
-sfile_name = '/Users/pitwinner/Desktop/ftp_repair/source/trace_{}_{}.csv'
+lfile_name = os.getcwd() + '/source/3traces_{}_{}.csv'
+sfile_name = os.getcwd() + '/source/trace_{}_{}.csv'
 ufn = 'upload'
 dfn = 'download'
 datasets = ['tpcds', 'swim', 'tpch']

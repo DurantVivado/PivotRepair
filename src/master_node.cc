@@ -21,7 +21,7 @@ MasterNode::MasterNode(const std::string &aconf_addr)
   naddrs = pah->get_node_addresses();
   for (uint16_t i = 0; i < k + m; ++i)
   {
-    std::cout<<i<<std::endl;
+    std::cout<<naddrs[i + 1].host<<":"<<naddrs[i + 1].port<<std::endl;
     nodes[i] = new ConnectionSolver(naddrs[i + 1].host, naddrs[i + 1].port);
     nodes[i]->write(&ui, sizeof(ui));
   }

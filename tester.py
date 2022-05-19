@@ -24,6 +24,7 @@ class Tester:
         thread_list = []
         for i in range(1, n + 1):
             cmd = cmd_format.format(i)
+            #print(cmd)
             thread_list.append(threading.Thread(target=self.do_cmd, args=(cmd, self.show_cmd)))
             thread_list[-1].start()
         for t in thread_list:
@@ -69,7 +70,6 @@ class Tester:
         cmd = 'scp {2} {0}@node{1}:{2}'.format(self.cc.user_name,
                                               self.get_fnum(self.cc.node_num_fill, self.cc.node_num_len),
                                               self.cc.pdir + self.cc.conf_dir + self.cc.addr_file_name + self.cc.suffix)
-        # print(cmd)
         self.do_muti_cmd(self.test_n, cmd)
 
         #start master
@@ -77,11 +77,13 @@ class Tester:
         self.master_thread = threading.Thread(target=self.do_cmd, args=(cmd, self.show_cmd))
         self.master_thread.start()
         #start nodes
-        cmd = 'ssh {0}@node{1} "{2} {3}"'.format(self.cc.user_name,
+        cmd = 'ssh {0}@node{1} "export LD_LIBRARY_PATH=/usr/local/lib/x86_64-lin-gnu:$LD_LIBRARY_PATH;cd {2}; ./{3} {4}"'.format(self.cc.user_name,
                                              self.get_fnum(self.cc.node_num_fill, self.cc.node_num_len),
-                                             self.cc.pdir + self.cc.node_bin + self.cc.node_main, '{0}')
-        print(cmd)
+                                             self.cc.pdir,
+                                             self.cc.node_bin + self.cc.node_main, 
+                                             '{0}')
         for i in range(1, self.test_n + 1):
+            print(cmd.format(i))
             self.nodes_thread.append(threading.Thread(target=self.do_cmd, args=(cmd.format(i), self.show_cmd)))
             self.nodes_thread[-1].start()
 

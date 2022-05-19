@@ -42,6 +42,7 @@ NodeConnector::NodeConnector(uint16_t _id,
   //connect to the nodes whose id is bigger
   for (uint16_t i = id + 1; i < node_num; ++i)
   {
+    std::cout<<node_addresses[i].host<<":"<< node_addresses[i].port<<std::endl;
     nodes[i] = new ConnectionSolver(node_addresses[i].host, node_addresses[i].port);
     nodes[i]->write(&id, sizeof(id));
   }

@@ -44,7 +44,7 @@ class ConfigCreator:
         #bin files
         self.master_bin = 'build/bin/'
         self.master_main = 'master_main'
-        self.node_bin = 'bin/'
+        self.node_bin = 'build/bin/'
         self.node_main = 'node_main'
 
     def write_config_file(self):
