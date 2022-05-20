@@ -42,15 +42,14 @@ class Tester:
     #the deployment of all the nodes
     def make_cpp_and_send(self):
         #run makefile
-        self.do_cmd('cd {}; make clean; make'.format(self.cc.pdir), self.show_cmd)
+        # self.do_cmd('cd {}; make clean; make'.format(self.cc.pdir), self.show_cmd)
         #send the executable file to all the nodes
-        fcmd = 'ssh {0}@node{1} "rm -rf {2}{3}; mkdir {2}{3}"; scp {2}{4} {0}@node{1}:{2}{3}'
+        fcmd = 'ssh {0}@node{1} "rm -rf {2}*; mkdir {2}{3}"; scp {2}{4} {0}@node{1}:{2}{3}'
         cmd = fcmd.format(self.cc.user_name,
                           self.get_fnum(self.cc.node_num_fill, self.cc.node_num_len),
                           self.cc.pdir,
                           self.cc.node_bin,
                           self.cc.master_bin + self.cc.node_main)
-        # print('cd {}; make clean; make'.format(self.cc.pdir), self.show_cmd)
         self.do_muti_cmd(self.total_n, cmd)
 
     def hand_out_config(self):
@@ -77,13 +76,15 @@ class Tester:
         self.master_thread = threading.Thread(target=self.do_cmd, args=(cmd, self.show_cmd))
         self.master_thread.start()
         #start nodes
+        #for somewhat unknown reason the sockpp dynamic linking library is unable to be linked
+        #so I purposely set environmental variables in ssh commands, and for temporary use.
         cmd = 'ssh {0}@node{1} "export LD_LIBRARY_PATH=/usr/local/lib/x86_64-lin-gnu:$LD_LIBRARY_PATH;cd {2}; ./{3} {4}"'.format(self.cc.user_name,
                                              self.get_fnum(self.cc.node_num_fill, self.cc.node_num_len),
                                              self.cc.pdir,
                                              self.cc.node_bin + self.cc.node_main, 
                                              '{0}')
         for i in range(1, self.test_n + 1):
-            print(cmd.format(i))
+            # print(cmd.format(i))
             self.nodes_thread.append(threading.Thread(target=self.do_cmd, args=(cmd.format(i), self.show_cmd)))
             self.nodes_thread[-1].start()
 

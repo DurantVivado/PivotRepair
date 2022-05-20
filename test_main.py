@@ -3,21 +3,21 @@ import subprocess
 import source.process as sp
 import tester
 
-nodes_num = 4
+nodes_num = 6
 each_times = 5
 
 algs = ['f'] #r:RP,f:PivotRepair,p:PPT
-nks = [(4, 2)]
+nks = [(6, 3)]
 
-size = 1024 #32MiB
-psize = 1024 #32KiB
+size = 2 ** 26 #32MiB
+psize =  32768 #32KiB
 
 def main():
     t = tester.Tester(nodes_num)
-    # print('making executable cpp files...')
-    # t.make_cpp_and_send()
-    # print('sending config files to the nodes...')
-    # t.hand_out_config()
+    print('making executable cpp files...')
+    t.make_cpp_and_send()
+    print('sending config files to the nodes...')
+    t.hand_out_config()
     for alg in algs:
         print('\ntesting alg:', alg)
         for n, k in nks:

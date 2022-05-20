@@ -5,7 +5,8 @@ class ConfigCreator:
         self.node_num_len = 2
 
         self.min_global_min = 10
-
+        
+        #edit below if needed
         self.user_name = 'grasure'
         self.pdir =  '/home/grasure/go/src/github.com/YuchongHu/PivotRepair/' #'/home/{}/ftp_repair/'.format(self.user_name)
         self.suffix = '.txt'
@@ -44,7 +45,7 @@ class ConfigCreator:
         #bin files
         self.master_bin = 'build/bin/'
         self.master_main = 'master_main'
-        self.node_bin = 'build/bin/'
+        self.node_bin = 'bin/'
         self.node_main = 'node_main'
 
     def write_config_file(self):
